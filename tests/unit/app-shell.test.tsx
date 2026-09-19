@@ -1,3 +1,4 @@
+import { expect, it } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { Hero } from '@/components/site/hero'
 import { DEFAULT_SITE_SETTINGS } from '@/lib/site-defaults'
