@@ -1,0 +1,2 @@
+import { LoginForm } from '@/components/admin/login-form'
+export default function AdminLoginPage(){return <main className="grid min-h-screen place-items-center bg-[#050505] p-5 text-white"><div className="w-full max-w-md rounded-[2rem] border border-white/10 bg-white/[.04] p-7 md:p-9"><p className="eyebrow">Portfolio admin</p><h1 className="mt-3 text-4xl font-semibold tracking-[-.04em]">Welcome back.</h1><p className="mt-3 text-sm leading-6 text-white/45">Sign in with the allowlisted Supabase account.</p><LoginForm/></div></main>}

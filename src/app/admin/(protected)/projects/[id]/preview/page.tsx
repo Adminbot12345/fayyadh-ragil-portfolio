@@ -1,0 +1,4 @@
+import { notFound } from 'next/navigation'
+import { getAdminProjectById } from '@/features/projects/repository'
+import { ProjectPreview } from '@/components/site/project-preview'
+export default async function AdminPreview({params}:{params:Promise<{id:string}>}){const {id}=await params;const p=await getAdminProjectById(id);if(!p)notFound();return <div className="max-w-5xl"><div className="flex items-center justify-between"><div><p className="eyebrow">Draft preview</p><h1 className="mt-3 text-4xl font-semibold">{p.title}</h1></div><a className="text-sm text-white/45" href={`/admin/projects/${p.id}/edit`}>Edit →</a></div><div className="mt-8 overflow-hidden rounded-[2rem] border border-white/10"><ProjectPreview title={p.title} videoUrl={p.videoUrl} thumbnailUrl={p.thumbnailUrl}/></div><p className="mt-6 max-w-2xl leading-7 text-white/55">{p.description}</p></div>}

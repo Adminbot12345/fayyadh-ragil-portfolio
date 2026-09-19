@@ -1,0 +1,7 @@
+import type { Project } from '@/features/projects/types'
+import type { SiteSettings } from '@/features/settings/types'
+import { ProjectPreview } from './project-preview'
+
+export function InstagramSection({ projects, settings }: { projects: Project[]; settings: SiteSettings }) {
+  return <section id="instagram" className="section-pad border-b border-white/10"><div className="site-shell"><div className="flex items-end justify-between gap-8"><div><p className="eyebrow">Instagram</p><h2 className="section-title mt-3">@fyyyyydhhhh</h2></div><a aria-label="Instagram profile" className="liquid-button hidden px-5 py-3 text-sm md:inline-flex" href={settings.instagramUrl} target="_blank" rel="noreferrer">Follow on Instagram ↗</a></div><div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{projects.slice(0,6).map(p=><a key={p.id} href={p.instagramUrl!} target="_blank" rel="noreferrer" className="liquid-card group overflow-hidden rounded-[1.5rem]"><ProjectPreview title={p.title} videoUrl={p.videoUrl} thumbnailUrl={p.thumbnailUrl}/><div className="flex items-center justify-between p-4"><span className="text-sm">{p.title}</span><span className="text-xs text-white/45">View on Instagram ↗</span></div></a>)}</div><a aria-label="Instagram profile mobile" className="liquid-button mt-6 px-5 py-3 text-sm md:hidden" href={settings.instagramUrl} target="_blank" rel="noreferrer">Follow on Instagram ↗</a></div></section>
+}

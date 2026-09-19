@@ -1,0 +1,6 @@
+import { z } from 'zod'
+const httpUrl=z.string().trim().refine(v=>{try{const u=new URL(v);return u.protocol==='http:'||u.protocol==='https:'}catch{return false}},'Use a valid http(s) URL')
+const optionalHttpUrl=z.string().trim().refine(v=>{if(!v)return true;try{const u=new URL(v);return u.protocol==='http:'||u.protocol==='https:'}catch{return false}},'Use a valid http(s) URL')
+export const ctaTarget=z.string().trim().refine(value=>{if(/^#[A-Za-z][\w:-]*$/.test(value))return true;try{const url=new URL(value);return url.protocol==='http:'||url.protocol==='https:'}catch{return false}},'Use a section anchor or http(s) URL')
+export const siteSettingsSchema=z.object({fullName:z.string().trim().min(2).max(120),headline:z.string().trim().min(2).max(160),heroSupportingText:z.string().trim().max(500),heroVideoUrl:optionalHttpUrl,heroPosterUrl:optionalHttpUrl,profileImageUrl:optionalHttpUrl,bio:z.string().trim().max(2000),instagramUrl:httpUrl,whatsappNumber:z.string().trim().min(7).max(30).regex(/^[+0-9()\s.-]+$/,'Use a valid phone number'),email:z.string().trim().email(),primaryCtaLabel:z.string().trim().min(1).max(60),primaryCtaTarget:ctaTarget,secondaryCtaLabel:z.string().trim().min(1).max(60),secondaryCtaTarget:ctaTarget})
+export type SiteSettingsInput=z.infer<typeof siteSettingsSchema>
